@@ -1,8 +1,9 @@
 import React from 'react';
 // Importing the UseFetch custom hook from the UseFetch.jsx file
 import UseFetch from "./UseFetch.jsx";
+import './FetchData.css';
 
-const FetchData = () => {
+function FetchData ()  {
 
     // Using the UseFetch custom hook to fetch data from the URL and storing it in the data variable
     const [data] = UseFetch('https://api.npoint.io/9045c260b1565daa9e15');
@@ -11,10 +12,20 @@ const FetchData = () => {
     return (
     <>
      <ul className='list_data_main'>
-        <h1 className='usefetch_heading'>Use Fetch Custom Hook</h1>
+        {/* Mapping through the data and displaying it in the list */}
+         {data && data.map(e => (
+                <>
+                    <li className='list_data'>
+                        <h3>{e.name}</h3>
+                        <p><strong>Importance: </strong>{e.importance}</p>
+                        <p><strong>Benefits: </strong>{e.benefits6}</p>
+                        <p><strong>Time to eat: </strong>{e.best_time_to_intake}</p>
+                    </li>
+                </>
+         ))}
      </ul>
     </>
-  )
+    )
 }
 
 export default FetchData
